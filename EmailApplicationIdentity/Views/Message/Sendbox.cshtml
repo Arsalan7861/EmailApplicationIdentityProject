@@ -1,0 +1,86 @@
+﻿@using EmailApplicationIdentity.Models.MessageViewModels
+@model List<MessageWithRecieverViewModel>
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+}
+
+@await Component.InvokeAsync("_BreadCombUserLayoutComponentPartial", new { title = "SendBox", content = "Welcome, you can see emails that you sent in here.", icon = "notika-mail" })
+
+<div class="inbox-area">
+    <div class="container">
+        <div class="row">
+            @await Component.InvokeAsync("_MessageSidebarComponentPartial")
+
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="inbox-text-list sm-res-mg-t-30">
+                    <form asp-controller="Message" asp-action="SearchEmail" id="searchEmail" method="post">
+                        <div class="form-group">
+                            <div class="nk-int-st search-input search-overt">
+                                <input type="text" class="form-control" placeholder="Search email by email, subject or content..." name="searchTerm" />
+                                <button type="submit" form="searchEmail" class="btn search-ib">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="inbox-btn-st-ls btn-toolbar">
+                        <div class="btn-group ib-btn-gp active-hook nk-email-inbox">
+                            <a href="/Message/Sendbox" class="btn btn-default btn-sm"><i class="notika-icon notika-refresh"></i> Refresh</a>
+                            <button type="submit" form="deleteForm" class="btn btn-default btn-sm"><i class="notika-icon notika-trash"></i></button>
+                        </div>
+                    </div>
+                    <form asp-action="DeleteSelectedMessagesSendbox" asp-controller="Message" method="post" id="deleteForm">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-inbox">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th>Receiver</th>
+                                        <th>Subject</th>
+                                        <th>Category</th>
+                                        <th class="text-right mail-date">Send Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="">
+                                                <label><input name="selectedIds" value="@item.MessageId" type="checkbox" class="i-checks"></label>
+                                            </td>
+                                            <td><a href="/Message/MessageDetail/@item.MessageId">@item.RecieverName @item.RecieverSurname</a> </td>
+                                            <td><a href="/Message/MessageDetail/@item.MessageId"><strong>@item.Subject</strong> </a></td>
+
+                                            <td>
+                                                @switch (item.CategoryName)
+                                                {
+                                                    case "Travel":
+                                                        <span class="label label-success">Travel</span>
+                                                        break;
+                                                    case "Finance":
+                                                        <span class="label label-primary">Finance</span>
+                                                        break;
+                                                    case "Social":
+                                                        <span class="label label-default">Social</span>
+                                                        break;
+                                                    case "Promos":
+                                                        <span class="label label-info">Promos</span>
+                                                        break;
+                                                    case "Updates":
+                                                        <span class="label label-info">Updates</span>
+                                                        break;
+                                                }
+                                            </td>
+                                            <td class="text-right mail-date">@item.SendDate.ToString("dd MMMM yyyy")</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

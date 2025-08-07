@@ -1,0 +1,50 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "CreateCategory";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+}
+
+@await Component.InvokeAsync("_BreadCombUserLayoutComponentPartial", new { title = "Create Category", content = "Welcome, you can create categories in here.", icon = "notika-promos" })
+
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list">
+                    <form method="post">
+                       <label asp-for="CategoryName" class="form-label">Category Name</label>
+                        <input asp-for="CategoryName" class="form-control" />
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                        <label asp-for="CategoryStatus" class="form-label">Category Status</label>
+                        <select asp-for="CategoryStatus" class="form-control">
+                            <option value="True">Active</option>
+                            <option value="False">Passive</option>
+                        </select>
+                        <span asp-validation-for="CategoryStatus" class="text-danger"></span>
+                        <label asp-for="CategoryIconUrl" class="form-label">Category Icon URL</label>
+                        <input asp-for="CategoryIconUrl" class="form-control" />
+                        <span asp-validation-for="CategoryIconUrl" class="text-danger"></span>
+                        <div style="margin-top:5px" class="d-flex justify-content-center">
+
+                        <button type="submit" class="btn btn-success" >Create Category</button>
+                        </div>
+                    </form>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <div class="nk-int-st">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

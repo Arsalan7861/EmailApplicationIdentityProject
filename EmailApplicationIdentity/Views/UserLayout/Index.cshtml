@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html class="no-js" lang="">
+
+    @await Component.InvokeAsync("_HeadUserLayoutComponentPartial")
+
+<body>
+    @await Component.InvokeAsync("_HeaderUseLayoutComponentPartial")
+
+    @await Component.InvokeAsync("_MobileMenuUserLayoutComponentPartial")
+
+    @await Component.InvokeAsync("_NavbarUserLayoutComponentPartial")
+
+    @RenderBody()
+
+    @await Component.InvokeAsync("_FooterUserLayoutComponentPartial")
+</body>
+</html>

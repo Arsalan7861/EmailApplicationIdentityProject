@@ -1,0 +1,70 @@
+﻿@model List<Comment>
+
+@{
+    ViewData["Title"] = "UserCommentList";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+    var count = 0;
+}
+
+@await Component.InvokeAsync("_BreadCombUserLayoutComponentPartial", new { title = "User Comments", content = "Welcome, you can see comments in here.", icon = "notika-chat" })
+
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list">
+                    <div class="basic-tb-hd">
+                        <h2>Comment List</h2>
+                    </div>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User</th>
+                                <th>Comment</th>
+                                <th>Status</th>
+                                <th>Delete</th>
+                                <th>Toxic</th>
+                                <th>Passive</th>
+                                <th>Approve Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.AppUser.Name @item.AppUser.Surname</td>
+                                    <td>@item.CommentDetail</td>
+                                    <td>@item.CommentStatus</td>
+                                    <td>
+                                        <a href="/Comments/DeleteComment/@item.CommentId" class="btn btn-danger">Delete</a>
+                                    </td>
+                                    <td>
+                                        <a href="/Comments/ToxicComment/@item.CommentId" class="btn btn-warning">Toxic</a>
+                                    </td>
+                                    <td>
+                                        <a href="/Comments/PassiveComment/@item.CommentId" class="btn btn-info">Make Passive</a>
+                                    </td>
+                                    <td>
+                                        <a href="/Comments/ApproveComment/@item.CommentId" class="btn btn-primary">Approve Email</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <div class="nk-int-st">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

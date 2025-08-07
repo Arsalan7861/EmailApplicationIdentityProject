@@ -1,0 +1,69 @@
+﻿@model Message
+@{
+    ViewData["Title"] = "MessageDetail";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+}
+@{
+    var timeDiff = DateTime.Now - Model.SendDate;
+    string timeAgo;
+    if (timeDiff.TotalMinutes < 1)
+    {
+        timeAgo = "just now";
+    }
+    else if (timeDiff.TotalMinutes < 60)
+    {
+        timeAgo = $"{(int)timeDiff.TotalMinutes} minutes ago";
+    }
+    else if (timeDiff.TotalHours < 24)
+    {
+        timeAgo = $"{(int)timeDiff.TotalHours} hours ago";
+    }
+    else if (timeDiff.TotalDays < 30)
+    {
+        timeAgo = $"{(int)timeDiff.TotalDays} days ago";
+    }
+    else
+    {
+        timeAgo = Model.SendDate.ToString("dd MMMM yyyy");
+    }
+}
+
+@await Component.InvokeAsync("_BreadCombUserLayoutComponentPartial", new { title = "Message Details", content = "Welcome, you can see message details. ", icon = "notika-mail" })
+
+<div class="inbox-area">
+    <div class="container">
+        <div class="row">
+            @await Component.InvokeAsync("_MessageSidebarComponentPartial")
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="view-mail-list sm-res-mg-t-30">
+                    <div class="view-mail-hd">
+                        <div class="view-mail-hrd">
+                            <h2>Email Details</h2>
+                        </div>
+                        <div class="view-ml-rl">
+                            <p>@Model.SendDate.ToString("HH:mm") (<span style="color:dimgrey">@timeAgo</span>)</p>
+                        </div>
+                    </div>
+                    <div class="mail-ads mail-vw-ph">
+                        <p class="first-ph"><b>Subject: </b>@Model.Subject</p>
+                        <p><b>Email:</b> <a href="mailto:@Model.SenderEmail">@Model.SenderEmail</a></p>
+                        <p class="last-ph"><b>Date:</b> @Model.SendDate.ToString("dd MMMM yyyy")</p>
+                    </div>
+                    <div class="view-mail-atn">
+                        <p>@Html.Raw(Model.MesssageDetail)</p>
+                    </div>
+                    <div class="vw-ml-action-ls text-right mg-t-20">
+                        <div class="btn-group ib-btn-gp active-hook nk-email-inbox">
+                            <button class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-next"></i> Reply</button>
+                            <button class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-right-arrow"></i> Forward</button>
+                            <button class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-print"></i> Print</button>
+
+                            <button class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-trash"></i> Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

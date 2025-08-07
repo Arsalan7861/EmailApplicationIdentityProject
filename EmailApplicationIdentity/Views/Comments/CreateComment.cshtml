@@ -1,0 +1,10 @@
+﻿<div class="comment-form">
+    <h4>📝 Create New Comment</h4>
+    <form asp-action="CreateComment" asp-controller="Comments" method="post">
+        <div class="form-group mb-3">
+            <label for="CommentDetail">Your Comment</label>
+            <textarea name="CommentDetail" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Send Comment</button>
+    </form>
+</div>

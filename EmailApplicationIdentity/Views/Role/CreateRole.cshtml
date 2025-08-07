@@ -1,0 +1,46 @@
+﻿@using EmailApplicationIdentity.Models.IdentityModels
+@model CreateRoleViewModel
+@{
+    ViewData["Title"] = "CreateRole";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+}
+
+@await Component.InvokeAsync("_BreadCombUserLayoutComponentPartial", new { title = "Create Role", content = "Welcome, you can create roles in here.", icon = "notika-edit" })
+
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" asp-for="RoleName" placeholder="Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="nk-int-st">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="nk-int-st">
+                                        <button type="submit" class="btn btn-success notika-btn-primary">Create Role</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
