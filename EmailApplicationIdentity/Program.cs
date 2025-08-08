@@ -53,8 +53,8 @@ public class Program
         // Google authentication Configuration
         .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
         {
-            options.ClientId = "68887452084-02rsdrmhomm1t4vto5lv24efbt1fftus.apps.googleusercontent.com";
-            options.ClientSecret = "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";
+            options.ClientId = "***.apps.googleusercontent.com";
+            options.ClientSecret = "ASDFASDFASD";
             options.CallbackPath = "/signin-google";
         });
 
