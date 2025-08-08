@@ -63,7 +63,8 @@ To set up the project locally, follow these steps:
    dotnet restore
    ```
    ### Important:
-     Don't forget to update the **connection string**
+     Don't forget to update the **connection string**.
+     Also take you own API KEY from Hugging Face for the AI model to work.
 
 ## Contributing
 
