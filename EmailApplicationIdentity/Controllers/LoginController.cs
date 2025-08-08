@@ -83,7 +83,7 @@ public class LoginController : Controller
                 });
             }
 
-            return RedirectToAction("EditProfile", "Profile");
+            return RedirectToAction("Inbox", "Message");
         }
 
         ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı.");

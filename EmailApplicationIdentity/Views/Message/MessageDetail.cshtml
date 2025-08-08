@@ -53,12 +53,7 @@
                         <p>@Html.Raw(Model.MesssageDetail)</p>
                     </div>
                     <div class="vw-ml-action-ls text-right mg-t-20">
-                        <div class="btn-group ib-btn-gp active-hook nk-email-inbox">
-                            <button class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-next"></i> Reply</button>
-                            <button class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-right-arrow"></i> Forward</button>
-                            <button class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-print"></i> Print</button>
-
-                            <button class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-trash"></i> Remove</button>
+                        <a type="button" class="btn btn-default btn-sm waves-effect" asp-action="DeleteMessage" asp-controller="Message" asp-route-id="@Model.MessageId"><i class="notika-icon notika-trash"></i> Remove</a>
                         </div>
                     </div>
                 </div>

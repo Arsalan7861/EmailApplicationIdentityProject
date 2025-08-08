@@ -25,17 +25,18 @@ public class RegisterController : Controller
     [HttpPost]
     public async Task<IActionResult> Signup(RegisterUserViewModel model)
     {
-        //if (!ModelState.IsValid)
-        //{
-        //    return View(model);
-        //}
+        if (!ModelState.IsValid)
+        {
+            ModelState.AddModelError(string.Empty, "Bilgiler eksik!");
+            return View(model);
+        }
 
-        //var existingUser = await _userManager.FindByEmailAsync(model.Email);
-        //if (existingUser != null)
-        //{
-        //    ModelState.AddModelError(nameof(model.Email), $"'{model.Email}' e-posta adresi zaten alınmış.");
-        //    return View(model);
-        //}
+        var existingUser = await _userManager.FindByEmailAsync(model.Email);
+        if (existingUser != null)
+        {
+            ModelState.AddModelError(string.Empty, $"'{model.Email}' e-posta adresi zaten alınmış.");
+            return View(model);
+        }
 
         Random random = new Random();
         int code = random.Next(100000, 1000000);
